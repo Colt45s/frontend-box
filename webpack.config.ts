@@ -1,17 +1,15 @@
-'use strict';
-
-const path = require('path');
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
+import webpack from 'webpack';
+import merge from 'webpack-merge';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const config =
   process.env.NODE_ENV === 'production'
-    ? require('./webpack.prod.config')
-    : require('./webpack.dev.config');
+    ? require('./webpack.prod.config').default
+    : require('./webpack.dev.config').default;
 
-const base = {
+const base: webpack.Configuration = {
   entry: path.resolve('src', 'index.tsx'),
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -41,4 +39,4 @@ const base = {
   ]
 };
 
-module.exports = merge(base, config);
+export default merge(base, config);

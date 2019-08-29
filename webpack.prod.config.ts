@@ -1,8 +1,6 @@
-'use strict';
+import webpack from 'webpack';
 
-const webpack = require('webpack');
-
-const config = {
+const config: webpack.Configuration = {
   mode: 'production',
   output: {
     filename: '[name].[contenthash].js',
@@ -23,4 +21,4 @@ const config = {
   }
 };
 
-module.exports = config;
+export default config;
